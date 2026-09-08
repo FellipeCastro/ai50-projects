@@ -10,6 +10,8 @@ O curso explora os conceitos e algoritmos que fundamentam a inteligência artifi
 |---------|---------------|---------------------|
 | [`search/degrees`](./search/degrees) | 0 — Search | Busca em largura (BFS), fronteira de fila, problema do menor caminho |
 | [`search/tictactoe`](./search/tictactoe) | 0 — Search | Adversarial search, algoritmo Minimax, jogos de soma zero |
+| [`knowledge/knights`](./knowledge/knights) | 1 — Knowledge | Lógica proposicional, base de conhecimento, model checking |
+| [`knowledge/minesweeper`](./knowledge/minesweeper) | 1 — Knowledge | Agente baseado em conhecimento, inferência com sentenças lógicas |
 
 ### `search/degrees`
 
@@ -34,6 +36,27 @@ python runner.py
 
 O `runner.py` fornece a interface gráfica em Pygame; toda a lógica de jogo e da IA está em `tictactoe.py`.
 
+### `knowledge/knights`
+
+Resolve quebra-cabeças de *cavaleiros e servos* (Knights and Knaves) com **lógica proposicional**. Cada afirmação vira um par de implicações e o `model_check` de `logic.py` enumera os modelos para deduzir quem fala a verdade e quem mente.
+
+```bash
+cd knowledge/knights
+python puzzle.py
+```
+
+### `knowledge/minesweeper`
+
+Um **agente baseado em conhecimento** que joga Campo Minado. Mantém sentenças lógicas do tipo "exatamente N destas células são minas" e infere células seguras e minas, inclusive pela regra do subconjunto.
+
+```bash
+cd knowledge/minesweeper
+pip install -r requirements.txt
+python runner.py
+```
+
+A lógica está em `minesweeper.py`; a interface gráfica em Pygame está em `runner.py`.
+
 ## Requisitos
 
 - Python 3.10+
@@ -43,10 +66,15 @@ O `runner.py` fornece a interface gráfica em Pygame; toda a lógica de jogo e d
 
 ```
 ai50/
-└── search/            # Semana 0 — Search
-    ├── degrees/       # Busca em largura
-    └── tictactoe/     # Minimax
+├── search/            # Semana 0 — Search
+│   ├── degrees/       # Busca em largura
+│   └── tictactoe/     # Minimax
+└── knowledge/         # Semana 1 — Knowledge
+    ├── knights/       # Lógica proposicional / model checking
+    └── minesweeper/   # Agente baseado em conhecimento
 ```
+
+Cada pasta e cada projeto tem um `README.md` próprio com detalhes e instruções de execução.
 
 ## Licença
 
