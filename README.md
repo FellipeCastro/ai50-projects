@@ -14,6 +14,7 @@ O curso explora os conceitos e algoritmos que fundamentam a inteligência artifi
 | [`knowledge/minesweeper`](./knowledge/minesweeper) | 1 — Knowledge | Agente baseado em conhecimento, inferência com sentenças lógicas |
 | [`uncertainly/pagerank`](./uncertainly/pagerank) | 2 — Uncertainty | Cadeias de Markov, navegante aleatório, amostragem vs. iteração |
 | [`uncertainly/heredity`](./uncertainly/heredity) | 2 — Uncertainty | Rede bayesiana, probabilidade conjunta, inferência por enumeração |
+| [`optimization/crossword`](./optimization/crossword) | 3 — Optimization | CSP, consistência de arco (AC-3), busca com retrocesso, heurísticas MRV / grau / LCV |
 
 ### `search/degrees`
 
@@ -77,6 +78,16 @@ cd uncertainly/heredity
 python heredity.py data/family0.csv      # ou family1.csv, family2.csv
 ```
 
+### `optimization/crossword`
+
+Gera **palavras cruzadas**: dada a estrutura de uma grade e um vocabulário, preenche todos os espaços de modo que cada palavra caiba no seu lugar e as letras nas interseções coincidam. Modela o problema como um **CSP** — cada sequência de células é uma variável, o domínio é a lista de palavras — e resolve com **consistência de nó**, **AC-3** e **busca com retrocesso**, guiada pelas heurísticas de mínimos valores restantes, grau e valor menos restritivo.
+
+```bash
+cd optimization/crossword
+python generate.py data/structure1.txt data/words1.txt              # imprime no terminal
+python generate.py data/structure1.txt data/words1.txt output.png   # salva imagem (requer Pillow)
+```
+
 ## Requisitos
 
 - Python 3.10+
@@ -92,9 +103,11 @@ ai50/
 ├── knowledge/         # Semana 1 — Knowledge
 │   ├── knights/       # Lógica proposicional / model checking
 │   └── minesweeper/   # Agente baseado em conhecimento
-└── uncertainly/       # Semana 2 — Uncertainty
-    ├── pagerank/      # Cadeias de Markov / navegante aleatório
-    └── heredity/      # Rede bayesiana / inferência por enumeração
+├── uncertainly/       # Semana 2 — Uncertainty
+│   ├── pagerank/      # Cadeias de Markov / navegante aleatório
+│   └── heredity/      # Rede bayesiana / inferência por enumeração
+└── optimization/      # Semana 3 — Optimization
+    └── crossword/     # CSP / AC-3 / busca com retrocesso
 ```
 
 Cada pasta e cada projeto tem um `README.md` próprio com detalhes e instruções de execução.
