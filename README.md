@@ -12,6 +12,8 @@ O curso explora os conceitos e algoritmos que fundamentam a inteligência artifi
 | [`search/tictactoe`](./search/tictactoe) | 0 — Search | Adversarial search, algoritmo Minimax, jogos de soma zero |
 | [`knowledge/knights`](./knowledge/knights) | 1 — Knowledge | Lógica proposicional, base de conhecimento, model checking |
 | [`knowledge/minesweeper`](./knowledge/minesweeper) | 1 — Knowledge | Agente baseado em conhecimento, inferência com sentenças lógicas |
+| [`uncertainly/pagerank`](./uncertainly/pagerank) | 2 — Uncertainty | Cadeias de Markov, navegante aleatório, amostragem vs. iteração |
+| [`uncertainly/heredity`](./uncertainly/heredity) | 2 — Uncertainty | Rede bayesiana, probabilidade conjunta, inferência por enumeração |
 
 ### `search/degrees`
 
@@ -57,6 +59,24 @@ python runner.py
 
 A lógica está em `minesweeper.py`; a interface gráfica em Pygame está em `runner.py`.
 
+### `uncertainly/pagerank`
+
+Estima a **importância relativa** de páginas web pelo algoritmo **PageRank**. Modela um *navegante aleatório* que segue links com probabilidade `0.85` e salta para uma página qualquer com probabilidade `0.15`, e calcula o ranking de duas formas: por **amostragem** (simulação de 10 000 passos) e por **iteração** da fórmula do PageRank até convergir.
+
+```bash
+cd uncertainly/pagerank
+python pagerank.py corpus0      # ou corpus1, corpus2
+```
+
+### `uncertainly/heredity`
+
+Uma **rede bayesiana** que calcula, para cada membro de uma família, a probabilidade de ter 0, 1 ou 2 cópias de um gene e de manifestar a característica associada. Faz **inferência por enumeração**: percorre todas as combinações de genes e características, calcula a probabilidade conjunta de cada cenário e normaliza o resultado.
+
+```bash
+cd uncertainly/heredity
+python heredity.py data/family0.csv      # ou family1.csv, family2.csv
+```
+
 ## Requisitos
 
 - Python 3.10+
@@ -69,9 +89,12 @@ ai50/
 ├── search/            # Semana 0 — Search
 │   ├── degrees/       # Busca em largura
 │   └── tictactoe/     # Minimax
-└── knowledge/         # Semana 1 — Knowledge
-    ├── knights/       # Lógica proposicional / model checking
-    └── minesweeper/   # Agente baseado em conhecimento
+├── knowledge/         # Semana 1 — Knowledge
+│   ├── knights/       # Lógica proposicional / model checking
+│   └── minesweeper/   # Agente baseado em conhecimento
+└── uncertainly/       # Semana 2 — Uncertainty
+    ├── pagerank/      # Cadeias de Markov / navegante aleatório
+    └── heredity/      # Rede bayesiana / inferência por enumeração
 ```
 
 Cada pasta e cada projeto tem um `README.md` próprio com detalhes e instruções de execução.
