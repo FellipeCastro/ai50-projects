@@ -15,6 +15,8 @@ O curso explora os conceitos e algoritmos que fundamentam a inteligência artifi
 | [`uncertainly/pagerank`](./uncertainly/pagerank) | 2 — Uncertainty | Cadeias de Markov, navegante aleatório, amostragem vs. iteração |
 | [`uncertainly/heredity`](./uncertainly/heredity) | 2 — Uncertainty | Rede bayesiana, probabilidade conjunta, inferência por enumeração |
 | [`optimization/crossword`](./optimization/crossword) | 3 — Optimization | CSP, consistência de arco (AC-3), busca com retrocesso, heurísticas MRV / grau / LCV |
+| [`learning/shopping`](./learning/shopping) | 4 — Learning | Aprendizado supervisionado, classificação k-NN, divisão treino/teste, sensibilidade e especificidade |
+| [`learning/nim`](./learning/nim) | 4 — Learning | Aprendizado por reforço, Q-learning, epsilon-greedy |
 
 ### `search/degrees`
 
@@ -88,6 +90,29 @@ python generate.py data/structure1.txt data/words1.txt              # imprime no
 python generate.py data/structure1.txt data/words1.txt output.png   # salva imagem (requer Pillow)
 ```
 
+### `learning/shopping`
+
+Treina um classificador **k-vizinhos mais próximos** (k-NN) para prever, a partir do comportamento de navegação numa loja online, se a sessão vai **terminar em compra**. Lê ~12 000 sessões de `shopping.csv`, converte cada linha em vetor de atributos, separa 60% para treino e 40% para teste e reporta **sensibilidade** (verdadeiros positivos) e **especificidade** (verdadeiros negativos) — em vez de só a acurácia, que enganaria numa base desbalanceada.
+
+```bash
+cd learning/shopping
+python shopping.py shopping.csv        # k = 1 (padrão)
+python shopping.py shopping.csv 5      # k = 5
+```
+
+Requer **scikit-learn** (`pip install scikit-learn`).
+
+### `learning/nim`
+
+Ensina uma IA a jogar **Nim** por **aprendizado por reforço** (Q-learning). A IA treina jogando 10 000 partidas contra si mesma, atualizando `Q(estado, ação)` a cada jogada, e depois enfrenta um humano usando a estratégia **epsilon-greedy** (sem exploração ao jogar de verdade).
+
+```bash
+cd learning/nim
+python play.py
+```
+
+Roda apenas com a biblioteca padrão.
+
 ## Requisitos
 
 - Python 3.10+
@@ -106,8 +131,11 @@ ai50/
 ├── uncertainly/       # Semana 2 — Uncertainty
 │   ├── pagerank/      # Cadeias de Markov / navegante aleatório
 │   └── heredity/      # Rede bayesiana / inferência por enumeração
-└── optimization/      # Semana 3 — Optimization
-    └── crossword/     # CSP / AC-3 / busca com retrocesso
+├── optimization/      # Semana 3 — Optimization
+│   └── crossword/     # CSP / AC-3 / busca com retrocesso
+└── learning/          # Semana 4 — Learning
+    ├── shopping/      # Classificação k-NN / aprendizado supervisionado
+    └── nim/           # Q-learning / aprendizado por reforço
 ```
 
 Cada pasta e cada projeto tem um `README.md` próprio com detalhes e instruções de execução.
