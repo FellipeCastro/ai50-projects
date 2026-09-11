@@ -11,7 +11,7 @@ MODEL = "bert-base-uncased"
 K = 3
 
 # Constants for generating attention diagrams
-FONT = ImageFont.truetype("assets/fonts/OpenSans-Regular.ttf", 28)
+#FONT = ImageFont.truetype("assets/fonts/OpenSans-Regular.ttf", 28)
 GRID_SIZE = 40
 PIXELS_PER_WORD = 200
 
@@ -23,6 +23,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(MODEL)
     inputs = tokenizer(text, return_tensors="tf")
     mask_token_index = get_mask_token_index(tokenizer.mask_token_id, inputs)
+    print(mask_token_index)
     if mask_token_index is None:
         sys.exit(f"Input must include mask token {tokenizer.mask_token}.")
 
@@ -45,9 +46,18 @@ def get_mask_token_index(mask_token_id, inputs):
     Return the index of the token with the specified `mask_token_id`, or
     `None` if not present in the `inputs`.
     """
-    token_ids = inputs["input_ids"][0].numpy()
     try:
-        return list(token_ids).index(mask_token_id)
+        # Extract input IDs from the input
+        input_ids = inputs["input_ids"][0]
+
+        # Convert tensor to a Python list
+        input_ids_list = list(input_ids.numpy())
+
+        # Find the index of the mask token ID
+        mask_token_index = input_ids_list.index(mask_token_id)
+
+        return mask_token_index
+
     except ValueError:
         return None
 
@@ -58,8 +68,9 @@ def get_color_for_attention_score(attention_score):
     Return a tuple of three integers representing a shade of gray for the
     given `attention_score`. Each value should be in the range [0, 255].
     """
-    grey_value = int(attention_score * 255)
-    return (grey_value, grey_value, grey_value)
+    # Scale the attention score to a value between 0 and 255
+    color_value = int(attention_score * 255)
+    return (color_value, color_value, color_value)
 
 
 
@@ -73,9 +84,19 @@ def visualize_attentions(tokens, attentions):
     include both the layer number (starting count from 1) and head number
     (starting count from 1).
     """
-    for layer_index, layer in enumerate(attentions):
-        for head_index, head in enumerate(layer[0]):
-            generate_diagram(layer_index + 1, head_index + 1, tokens, head.numpy())
+    # TODO: Update this function to produce diagrams for all layers and heads.
+    '''generate_diagram(
+        1,
+        1,
+        tokens,
+        attentions[0][0][0]
+    )'''
+    for i in range(len(attentions)):
+        layer = attentions[i]
+        for j in range(len(layer[0])):
+            head = layer[0][j]
+            generate_diagram(i+1, j+1, tokens, head)
+
 
 
 def generate_diagram(layer_number, head_number, tokens, attention_weights):
@@ -102,18 +123,18 @@ def generate_diagram(layer_number, head_number, tokens, attention_weights):
             (image_size - PIXELS_PER_WORD, PIXELS_PER_WORD + i * GRID_SIZE),
             token,
             fill="white",
-            font=FONT
+            #font=FONT
         )
         token_image = token_image.rotate(90)
         img.paste(token_image, mask=token_image)
 
         # Draw token rows
-        _, _, width, _ = draw.textbbox((0, 0), token, font=FONT)
+        _, _, width, _ = draw.textbbox((0, 0), token)#, font=FONT)
         draw.text(
             (PIXELS_PER_WORD - width, PIXELS_PER_WORD + i * GRID_SIZE),
             token,
             fill="white",
-            font=FONT
+            #font=FONT
         )
 
     # Draw each word
