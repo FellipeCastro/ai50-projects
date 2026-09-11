@@ -108,10 +108,27 @@ def shortest_path(source, target):
 
         # If nothing left in frontier, then no path
         if frontier.empty():
-            raise Exception("no solution")
+            return None
 
         # Choose a node from the frontier
         node = frontier.remove()
+
+        # If node is the goal, then we have a solution
+        if node.state == target:
+            movies = []
+            people = []
+            solution = []
+            while node.parent is not None:
+                movies.append(node.action)
+                people.append(node.state)
+                node = node.parent
+            movies.reverse()
+            people.reverse()
+            x = zip(movies, people)
+            for movie, person in x:
+                solution.append((movie, person))
+            return solution
+
         num_explored += 1
 
         # Mark node as explored
@@ -122,22 +139,6 @@ def shortest_path(source, target):
             if not frontier.contains_state(person_id) and person_id not in explored:
                 child = Node(state=person_id, parent=node, action=movie_id)
                 frontier.add(child)
-
-                # If node is the goal, then we have a solution
-                if child.state == target:
-                    movies = []
-                    people = []
-                    solution = []
-                    while child.parent is not None:
-                        movies.append(child.action)
-                        people.append(child.state)
-                        child = child.parent
-                    movies.reverse()
-                    people.reverse()
-                    x = zip(movies, people)
-                    for movie, person in x:
-                        solution.append((movie, person))
-                    return solution
 
 
 def person_id_for_name(name):
