@@ -14,7 +14,7 @@ O curso explora os conceitos e algoritmos que fundamentam a inteligência artifi
 | [`knowledge/minesweeper`](./knowledge/minesweeper) | 1 — Knowledge | Agente baseado em conhecimento, inferência com sentenças lógicas |
 | [`uncertainly/pagerank`](./uncertainly/pagerank) | 2 — Uncertainty | Cadeias de Markov, navegante aleatório, amostragem vs. iteração |
 | [`uncertainly/heredity`](./uncertainly/heredity) | 2 — Uncertainty | Rede bayesiana, probabilidade conjunta, inferência por enumeração |
-| [`optimization/crossword`](./optimization/crossword) | 3 — Optimization | CSP, consistência de arco (AC-3), busca com retrocesso, heurísticas MRV / grau / LCV |g
+| [`optimization/crossword`](./optimization/crossword) | 3 — Optimization | CSP, consistência de arco (AC-3), busca com retrocesso, heurísticas MRV / grau / LCV |
 | [`learning/shopping`](./learning/shopping) | 4 — Learning | Aprendizado supervisionado, classificação k-NN, divisão treino/teste, sensibilidade e especificidade |
 | [`learning/nim`](./learning/nim) | 4 — Learning | Aprendizado por reforço, Q-learning, epsilon-greedy |
 | [`neural-networks/traffic`](./neural-networks/traffic) | 5 — Neural Networks | Rede neural convolucional (CNN), TensorFlow/Keras, classificação de imagens |
