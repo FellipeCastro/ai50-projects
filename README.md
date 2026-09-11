@@ -14,9 +14,10 @@ O curso explora os conceitos e algoritmos que fundamentam a inteligência artifi
 | [`knowledge/minesweeper`](./knowledge/minesweeper) | 1 — Knowledge | Agente baseado em conhecimento, inferência com sentenças lógicas |
 | [`uncertainly/pagerank`](./uncertainly/pagerank) | 2 — Uncertainty | Cadeias de Markov, navegante aleatório, amostragem vs. iteração |
 | [`uncertainly/heredity`](./uncertainly/heredity) | 2 — Uncertainty | Rede bayesiana, probabilidade conjunta, inferência por enumeração |
-| [`optimization/crossword`](./optimization/crossword) | 3 — Optimization | CSP, consistência de arco (AC-3), busca com retrocesso, heurísticas MRV / grau / LCV |
+| [`optimization/crossword`](./optimization/crossword) | 3 — Optimization | CSP, consistência de arco (AC-3), busca com retrocesso, heurísticas MRV / grau / LCV |g
 | [`learning/shopping`](./learning/shopping) | 4 — Learning | Aprendizado supervisionado, classificação k-NN, divisão treino/teste, sensibilidade e especificidade |
 | [`learning/nim`](./learning/nim) | 4 — Learning | Aprendizado por reforço, Q-learning, epsilon-greedy |
+| [`neural-networks/traffic`](./neural-networks/traffic) | 5 — Neural Networks | Rede neural convolucional (CNN), TensorFlow/Keras, classificação de imagens |
 
 ### `search/degrees`
 
@@ -113,6 +114,19 @@ python play.py
 
 Roda apenas com a biblioteca padrão.
 
+### `neural-networks/traffic`
+
+Treina uma **rede neural convolucional (CNN)** para reconhecer **sinais de trânsito** a partir de imagens, usando o dataset **GTSRB** (43 categorias, ~26.600 imagens). Carrega e redimensiona as imagens com OpenCV, monta a rede em **TensorFlow/Keras** (blocos de `Conv2D` + `MaxPooling2D`, `Flatten`, camada densa com `Dropout` e saída `softmax`) e avalia a acurácia num conjunto de teste separado (40%).
+
+```bash
+cd neural-networks/traffic
+pip install -r requirements.txt
+python traffic.py gtsrb                # treina e avalia
+python traffic.py gtsrb modelo.h5       # treina, avalia e salva o modelo
+```
+
+Requer **OpenCV**, **scikit-learn** e **TensorFlow** (`pip install -r requirements.txt`).
+
 ## Requisitos
 
 - Python 3.10+
@@ -133,9 +147,11 @@ ai50/
 │   └── heredity/      # Rede bayesiana / inferência por enumeração
 ├── optimization/      # Semana 3 — Optimization
 │   └── crossword/     # CSP / AC-3 / busca com retrocesso
-└── learning/          # Semana 4 — Learning
-    ├── shopping/      # Classificação k-NN / aprendizado supervisionado
-    └── nim/           # Q-learning / aprendizado por reforço
+├── learning/          # Semana 4 — Learning
+│   ├── shopping/      # Classificação k-NN / aprendizado supervisionado
+│   └── nim/           # Q-learning / aprendizado por reforço
+└── neural-networks/   # Semana 5 — Neural Networks
+    └── traffic/       # CNN / classificação de sinais de trânsito (GTSRB)
 ```
 
 Cada pasta e cada projeto tem um `README.md` próprio com detalhes e instruções de execução.
